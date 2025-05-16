@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Autour+One&family=Caesar+Dressing&family=Ceviche+One&family=Kranky&family=Press+Start+2P&family=Srisakdi:wght@400;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Autour One", system-ui; 
+}
+
+#loginPage,  #registerPage{
+  width: 100%;
+  height: 90dvh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: #FBEAEB;
+}
+
+#loginForm, #registerForm{
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  background-color: #2F3C7E;
+  border-radius: 50px;
+  border: none;
+  color: #fcb9bf; 
+  gap: 30px;
+  padding: 70px;
+}
+
+.loginFormInputDivs, .registerFormInputDivs{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.loginFormInputs, .registerFormInputs{
+  width: 500px;
+  height: 44px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 15px;
+  outline: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #fcf4f5;
+  color: #fcb9bf;
+}
+
+#loginFormInputDivs label, #registerFormInputDivs label{
+  font-size: 22px;
+  font-weight: 400;
+  color: #fcd9dcb8;
+}
+
+#loginForm h1, #registerForm h1{
+  font-size: 70px;
+  font-weight: bold;
+  
+}
+
+#loginForm button, #registerForm button{
+  width: 400px;
+  height: 70px;
+  border-radius: 12px;
+  margin-top: 50px;
+  border: none;
+  background-color: #fcf4f5;
+  color: #fcb9bf;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+
+#loginForm button:hover, #registerForm button:hover{
+  scale: 1.01;
+  color: #fca5acde;
+  background-color: #fcf4f5f9;
+}
+
+
+.loginButtonDiv, .registerButtonDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.goToRegister, .goToLogin{
+  color: #617bfc;
+  cursor: pointer;
+}
+
+header{
+  width: 100%;
+  height: 10dvh;
+  background-color: #2f3c7ef0;
+  color: #fcb9bf; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 100px;
+}
+
+header h1{
+  font-size: 60px;
+  font-weight: bold;
+}
+
+#profile{
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile h2{
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #6d86fff0;
+  transition: all 0.3s ease-in-out;
+}
+
+#profile h2:hover{
+  color: #617bfc;
+  font-size: 50.5px;
+}
+
+#profile button{
+  width: 120px;
+  height: 55px;
+  border-radius: 10px;
+  border: none;
+  background-color: #fcf4f5;
+  color: #fcb9bf;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#profile button:hover{
+  scale: 1.05;
+  font-size: 20.5px;
+  color: #fca5acde;
+  background-color: #fcf4f5f9;
+}
+
+#profileDiv{
+  width: 100%;
+  height: 90dvh;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  padding: 300px;
+  gap: 100px;
+  background-color: #FBEAEB;
+}
+
+#profileDiv h1{
+  font-size: 100px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #617bfc;
+}
+
+
+.feed-container{
+  width: 100%;
+  height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 20px;
+  padding: 25px 100px;
+  background-color: #FBEAEB;
+}
+
+.form-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label{
+  font-size: 22px;
+  font-weight: bold;
+  color: #fcadb3;
+}
+
+.form-group input{
+  width: 500px;
+  height: 44px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 15px;
+  outline: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #fcf4f5;
+  color: #fcadb3;
+} 
+
+.form-group input::placeholder{
+  color: #fcadb3;
+}
+
+.form-groups{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.form-group textarea{
+  width: 500px;
+  height: 100px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 15px;
+  padding-top: 10px;
+  outline: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #fcf4f5;
+  color: #fcadb3;
+}
+
+.form-group textarea::placeholder{
+  color: #fcadb3;
+}
+
+.films-container{
+  width: 100%;
+  height: auto;
+  border: 3px solid #2f3c7ef0;
+  border-radius: 20px;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 20px;
+  padding: 75px;
+  background-color: rgb(255, 231, 233);
+}
+
+#film-container{
+  width: auto;
+  height: auto;
+  border: 2.5px solid #2f3c7ef0;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  border-radius: 20px;
+  background-color: #fcf4f5;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#directorName{
+  font-size: 22px;
+  font-weight: bold;
+  color: darkorchid;
+}
+
+#newFilmTitle{
+  font-size: 50px;
+  font-weight: bold;
+  color: #fcadb3;
+}
+
+#deleteButton{
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#deleteButton:hover{
+  scale: 1.02;
+  background-color: rgb(228, 0, 0);
+  font-size: 20.5px;
+}
+
+#genre{
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 10px;
+  outline: none;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #fcf4f5;
+  color: #fcadb3;
+}
+
+#addFilmButton{
+  width: 250px;
+  height: 55px;
+  border-radius: 10px;
+  border: none;
+  background-color: #fedadf;
+  color: #fca3ab;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 20px;
+}
+
+#addFilmButton:hover{
+  scale: 1.05;
+  font-size: 20.5px;
+  color: #fd949c;
+  background-color: #ffd4da;
+}
