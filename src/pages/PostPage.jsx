@@ -24,7 +24,7 @@ const PostPage = () => {
 
   const getDirector = async () => {
     try {
-      const res = await fetch('http://localhost:3000/auth/profile', {
+      const res = await fetch('https://backend-hw11.vercel.app/auth/profile', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -131,7 +131,7 @@ const PostPage = () => {
 
 
   const handleReaction = async (type, id) => {
-    const resp = await fetch(`http://localhost:3000/films/${id}/reactions`, {
+    const resp = await fetch(`https://backend-hw11.vercel.app/films/${id}/reactions`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -156,7 +156,7 @@ const PostPage = () => {
 
   const getFilmById = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/films/${id}`, {
+      const res = await fetch(`https://backend-hw11.vercel.app/films/${id}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -172,7 +172,7 @@ const PostPage = () => {
   const handleUpdateForm = async (e) => {
     e.preventDefault();
     const film = films.find(el => el._id === filmId);
-        const resp = await fetch(`http://localhost:3000/films/${film._id}`, {
+        const resp = await fetch(`https://backend-hw11.vercel.app/films/${film._id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,

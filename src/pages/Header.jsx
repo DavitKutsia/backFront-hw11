@@ -10,7 +10,7 @@ export default function Header() {
 
   const getDirector = async () => {
     try {
-      const res = await fetch('http://localhost:3000/auth/profile', {
+      const res = await fetch('https://backend-hw11.vercel.app/auth/profile', {
         headers: { 
           'Authorization': `Bearer ${token}` 
         }
