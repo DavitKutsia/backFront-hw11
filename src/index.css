@@ -279,22 +279,42 @@ header h1{
 }
 
 #deleteButton{
-  width: 100px;
+  width: 40px;
   height: 40px;
-  border-radius: 10px;
   border: none;
-  background-color: red;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
+  background-color: none;
   cursor: pointer;
+  stroke: red;
   transition: all 0.3s ease-in-out;
-}
+} 
 
 #deleteButton:hover{
   scale: 1.02;
-  background-color: rgb(228, 0, 0);
-  font-size: 20.5px;
+  stroke: #fca5acde;
+  background-color: #fcf4f5f9;
+}
+
+#editButton{
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  stroke: #002aff;
+  transition: all 0.3s ease-in-out;
+}
+
+#editButton:hover{
+  scale: 1.02;
+  stroke: #4d6bfd;
+}
+
+#filmActions{
+  width: 100%;
+  padding-inline: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #genre{
@@ -328,4 +348,103 @@ header h1{
   font-size: 20.5px;
   color: #fd949c;
   background-color: #ffd4da;
+}
+
+#thumbsContainer{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+#thumbsUp{
+  width: 30px;
+  height: 30px;
+  stroke: blue;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#thumbsUp:hover{
+  stroke: #4d6bfd;
+}
+
+#thumbsDown{
+  width: 30px;
+  height: 30px;
+  stroke: red;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+#thumbsDown:hover{
+  stroke: #fc7681de;
+}
+
+#thumbsUpContainer, #thumbsDownContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#modal{
+  position: fixed;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#updateForm{
+  width: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  padding: 45px 50px;
+  background-color: #2f3c7ef0;
+  border-radius: 20px;
+  border: none;
+  color: #fcb9bf;
+  gap: 30px;
+}
+
+#updateForm input{
+  width: 100%;
+  height: 44px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 15px;
+  outline: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #fcf4f5;
+  color: #fcb9bf;
+}
+
+#updateForm button{
+  width: 100%;
+  height: 55px;
+  border-radius: 10px;
+  border: none;
+  background-color: #fcf4f5;
+  color: #fcb9bf;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+#updateForm button:hover{
+  scale: 1.02;
+  font-size: 20.5px;
+  color: #fca5acde;
+  background-color: #fcf4f5f9;
 }

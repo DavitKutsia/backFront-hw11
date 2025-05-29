@@ -4,17 +4,21 @@ import '../index.css';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import Header from './Header';
+import { Pencil, ThumbsDown, ThumbsUp, Trash } from 'lucide-react';
 
 const PostPage = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(null);
   const [director, setDirector] = useState(null);
   const [filmTitle, setFilmTitle] = useState('');
   const [filmContent, setFilmContent] = useState('');
   const [filmGenre, setFilmGenre] = useState('drama'); 
   const [filmYear, setFilmYear] = useState(new Date().getFullYear()); 
   const [isCreating, setIsCreating] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [filmId, setFilmId] = useState(null);
+  const [updateFilmTitle, setUpdateFilmTitle] = useState('');
+  const [updateFilmContent, setUpdateFilmContent] = useState('');
   const navigate = useNavigate();
   const token = Cookies.get('token');
 
@@ -125,6 +129,75 @@ const PostPage = () => {
     }
   };
 
+
+  const handleReaction = async (type, id) => {
+    const resp = await fetch(`http://localhost:3000/films/${id}/reactions`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        reaction: type 
+      }),
+    })  
+    if (resp.status === 200) {
+      await fetchFilms();
+      toast.success(`You ${type === 'like' ? 'liked' : 'disliked'} the film!`);
+    }
+  }
+
+
+  const handleUpdate = async (id) => {
+    setShowModal(prev => !prev);
+    setFilmId(id);
+    await getFilmById(id);
+  }
+
+  const getFilmById = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/films/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      setUpdateFilmTitle(data.title);
+      setUpdateFilmContent(data.content);
+    } catch (err) {
+      toast.error(err.message);
+    }
+  }
+
+  const handleUpdateForm = async (e) => {
+    e.preventDefault();
+    const film = films.find(el => el._id === filmId);
+        const resp = await fetch(`http://localhost:3000/films/${film._id}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: updateFilmTitle,
+        content: updateFilmContent
+      }),
+    });
+
+    const data = await resp.json();
+    if (resp.status === 200) {
+      toast.success('Film updated successfully!');
+      setShowModal(false);
+      setUpdateFilmTitle('');
+      setUpdateFilmContent('');
+      setFilmId(null);
+      await fetchFilms();
+    } else {
+      toast.error(data.message || 'Failed to update film');
+    }
+  }
+
+
   useEffect(() => {
     if (!token) {
       navigate('/login');
@@ -137,8 +210,22 @@ const PostPage = () => {
     }
   }, [token, navigate]);
 
+  
+
+
   return (
     <div>
+      {showModal && 
+        <div id='modal' onClick={() => {
+          setShowModal(false)
+          setFilmId(null);
+        }}>
+          <form id='updateForm' onClick={(e) => e.stopPropagation()} onSubmit={handleUpdateForm}>
+            <input type="text" value={updateFilmTitle} onChange={(e) => setUpdateFilmTitle(e.target.value)}/>
+            <input type="text" value={updateFilmContent} onChange={(e) => setUpdateFilmContent(e.target.value)}/>
+            <button>Update</button>
+          </form>         
+        </div>}
       <Header />
       <div className="feed-container">
           <form onSubmit={handleCreateFilm}>
@@ -207,17 +294,35 @@ const PostPage = () => {
                 <p>Genre: {film.genre}</p>
                 <p>Year: {film.year}</p>
                 <p id='directorName'>Director: {film.director?.name}</p>
-                <button 
-                  onClick={() => handleDelete(film._id)}
-                  disabled={isDeleting === film._id}
-                  id='deleteButton'
-                >
-                  {isDeleting === film._id ? 'Deleting...' : 'Delete'}
-                </button>
+                <div id='filmActions'>
+                  {director && director._id === film.director?._id && (
+                    <Trash
+                      id='deleteButton'
+                      onClick={() => handleDelete(film._id)}
+                    />
+                      
+                  )}
+                  {director && director._id === film.director?._id && (
+                    <Pencil
+                      id='editButton'
+                      onClick={() => handleUpdate(film._id)}
+                    />
+                  )}
+                </div>
+                <div id='thumbsContainer'>
+                  <div id='thumbsUpContainer'>
+                    <ThumbsUp id='thumbsUp' onClick={() => handleReaction('like', film._id)} />
+                    {film.reactions?.likes?.length || 0}
+                  </div>
+                  <div id='thumbsDownContainer'>
+                    <ThumbsDown id='thumbsDown' onClick={() => handleReaction('dislike', film._id)} />
+                    {film.reactions?.dislikes?.length || 0}
+                  </div>
+                </div>
               </div>
             ))
           ) : (
-            <p>No films available</p>
+            <p>No films available</p> 
           )}
         </div>
       </div>
